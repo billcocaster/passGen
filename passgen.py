@@ -7,84 +7,84 @@ from tkinter import messagebox
 import random
 from tkinter import font
 from tkinter import ttk
-import customtkinter
 
 class passGen:
     def __init__(self):
-        self.main_window = customtkinter.CTk()
+        self.main_window = Tk()
         self.main_window.title("Welcome to password generator")
-        self.main_window.geometry('400x550')
-        self.main_window.grid_columnconfigure(0, weight=1)
-        self.main_window.grid_rowconfigure((0, 1), weight=1)
+        self.main_window.geometry('650x500')
 
+        frame1 = Frame(self.main_window)
+        frame2 = Frame(self.main_window)
+        checkFrame = Frame(self.main_window)
+        frame3 = Frame(self.main_window)
+        frame4 = Frame(self.main_window)
+        self.frame5 = Frame(self.main_window)
 
-        brandFrame = customtkinter.CTkFrame(self.main_window,fg_color='#F28705',corner_radius=5)
-        brandFrame.grid(row=0,column=0,sticky='w',padx=10,pady=10)
+        brandFont = font.Font(family="helvetica",size=18,slant="roman")
+        labelFont = font.Font(family="helvetica",size=18,slant="italic")
+        self.reminderFontLessEq2 = font.Font(family="helvetica",size=10,slant="italic")
+        self.reminderFont3 = font.Font(family="helvetica",size=10,slant="italic") 
         
+        brand = Label(frame1,text='Please select properties of your password',font=brandFont)
+        brand.pack(side='top')
 
+        space = Label(frame2,text='',font=('electrolize',15))
+        space.pack()
+
+        text = Label(frame2,text='Length:',font=labelFont)
+        text.pack(side='left')
+
+        self.entry = Entry(frame2,width=5)
+        self.entry.pack(side='right')
         
-        self.checkFrame = customtkinter.CTkFrame(self.main_window,fg_color='#243748')
-        self.checkFrame.grid(row=1,column=0,sticky='nsw',padx=(10,0),pady=(0,10))
-
-
-        brandFont = customtkinter.CTkFont(family="cascadia code",size=25,slant='roman',weight='bold')
-        checkTitleFont = customtkinter.CTkFont(family="helvetica neue",size=18,slant='italic')
-        self.reminderFontLessEq2 = customtkinter.CTkFont(family="helvetica neue",size=10,slant="italic",weight='bold')
-        self.reminderFont3 = customtkinter.CTkFont(family="helvetica neue",size=10,slant="italic",weight='normal') 
-    
-    
-        brand = customtkinter.CTkLabel(brandFrame,text=' passGen ',font=brandFont,text_color='#F20530')
-        brand.grid(row=0,column=0,padx=0,pady=2,sticky='w')
-
-
-
-        self.entry = customtkinter.CTkEntry(self.checkFrame,width=55,placeholder_text='Length',placeholder_text_color='#F2F2F2',fg_color='#2C2C2C',
-                                            border_color='#F28705')
-        self.entry.grid(row=5,column=0,sticky='w',padx=5,pady=5)
+        stil = ttk.Style()
+        stil.configure("TCheckbutton", font=('Helvetica', 18, 'italic'))
         
-        
-        
-        checkTitle = customtkinter.CTkLabel(self.checkFrame,text='Please select properties of your password',font=checkTitleFont,fg_color='#F28705',
-                                            corner_radius=5,text_color='#F2F2F2')
-        checkTitle.grid(row=0,column=0,padx=10,pady=10)
-
-
         self.checkSpecVar = tk.IntVar()
-        checkSpec = customtkinter.CTkCheckBox(self.checkFrame,text='Special chars',variable=self.checkSpecVar,onvalue=1,offvalue=0,command=self.reminders,fg_color='#F28705'
-                                              ,hover_color='#2C2C2C',corner_radius=50,border_color='#F28705')
-        checkSpec.grid(row=1,column=0,sticky='w',padx=5,pady=5)
+        checkSpec = ttk.Checkbutton(checkFrame,text='Special chars',style="TCheckbutton",variable=self.checkSpecVar,onvalue=1,offvalue=0,command=self.reminders)
+        checkSpec.pack()        
         
         self.checkNumVar = tk.IntVar()
-        checkNum = customtkinter.CTkCheckBox(self.checkFrame,text='Numbers',variable=self.checkNumVar,onvalue=4,offvalue=0,command=self.reminders,fg_color='#F28705'
-                                             ,hover_color='#2C2C2C',corner_radius=50,border_color='#F28705')
-        checkNum.grid(row=2,column=0,sticky='w',padx=5,pady=5)
+        checkNum = ttk.Checkbutton(checkFrame,text='Numbers',style="TCheckbutton",variable=self.checkNumVar,onvalue=4,offvalue=0,command=self.reminders)
+        checkNum.pack()        
         
         self.checkDownVar = tk.IntVar()
-        checkDown = customtkinter.CTkCheckBox(self.checkFrame,text='Downletters',variable=self.checkDownVar,onvalue=3,offvalue=0,command=self.reminders,fg_color='#F28705'
-                                              ,hover_color='#2C2C2C',corner_radius=50,border_color='#F28705')
-        checkDown.grid(row=3,column=0,sticky='w',padx=5,pady=5)
+        checkDown = ttk.Checkbutton(checkFrame,text='Downletters',style="TCheckbutton",variable=self.checkDownVar,onvalue=3,offvalue=0,command=self.reminders)
+        checkDown.pack()        
 
         self.checkUpVar = tk.IntVar()
-        checkUp = customtkinter.CTkCheckBox(self.checkFrame,text='Upletters',variable=self.checkUpVar,onvalue=2,offvalue=0,command=self.reminders,fg_color='#F28705'
-                                            ,hover_color='#2C2C2C',corner_radius=50,border_color='#F28705')
-        checkUp.grid(row=4,column=0,sticky='w',padx=5,pady=5)
+        checkUp = ttk.Checkbutton(checkFrame,text='Upletters',style="TCheckbutton",variable=self.checkUpVar,onvalue=2,offvalue=0,command=self.reminders)
+        checkUp.pack()        
 
-        button = customtkinter.CTkButton(self.checkFrame,text='Generate',command=self.passZone,fg_color='#F20530',text_color='#F2F2F2')
-        button.grid(row=6,column=0,pady=(20,0),sticky='w',padx=5)
+
+
+        space = Label(frame3,text='',font=('electrolize',10))
+        space.pack()
+        
+        button = Button(frame3,text='Generate',font='electrolize',command=self.passZone)
+        button.pack()
         
         self.passGenWord= tk.StringVar()
-        entrypass = customtkinter.CTkEntry(self.checkFrame,textvariable=self.passGenWord,state='disabled',text_color='#F2F2F2',width=280)
-        entrypass.grid(row=7,column=0,pady=50)
-        
-        historyButton = customtkinter.CTkButton(self.checkFrame,text='Password History',command=self.historyAdder,fg_color='#F20530',text_color='#F2F2F2')
-        historyButton.grid(row=6,column=0,sticky='e',pady=(20,0),padx=5)
+        entrypass = Entry(frame4,textvariable=self.passGenWord,state='readonly')
+        entrypass.config(readonlybackground=entrypass.cget('background'), fg='black', highlightthickness=0, borderwidth=0)
+        entrypass.pack(padx=10,pady=10)
         
         self.reminder = None
-        self.passwordHistory = []
-        self.main_window.iconbitmap('passgenicon.ico')
+        
+
+        
 
 
-        self.main_window.mainloop()
+        frame1.pack()
+        frame2.pack()
+        checkFrame.pack()
+        frame3.pack()
+        frame4.pack()
+        self.frame5.pack()
+        
+
+        mainloop()
         
     def passZone(self):
         try:
@@ -92,13 +92,13 @@ class passGen:
             if passLength<=0:
                 raise ValueError("Length must be a positive number.")
         except ValueError:
-            self.errorMessages("Length Error","Please enter valid length")
+            messagebox.showerror("Error","Please enter valid length")
             return
             
         selections = self.filters()
         
         if not selections:
-            self.errorMessages("Property Error", "Please select at least one property")
+            messagebox.showerror("Error", "Please select at least one property")
             return
         
         passy=""
@@ -120,8 +120,6 @@ class passGen:
                 o4 = str(random.randint(0,9))
                 passy+=o4
         self.passGenWord.set(passy)
-        self.passwordHistory.append(passy)
-
         
     def filters(self):
         selections=[]
@@ -140,42 +138,20 @@ class passGen:
         if self.reminder:
             self.reminder.destroy()
         if len(selections) <= 2:
-            self.reminder = customtkinter.CTkLabel(self.checkFrame, text='Not recommended',font=self.reminderFontLessEq2,text_color='#F20530')
-            self.reminder.grid(row=8,column=0,sticky='s',padx=5)
+            self.reminder = Label(self.frame5, text='Not recommended',foreground='red',font=("helvetica",10,"bold"))
+            self.reminder.pack()
         elif len(selections) == 3:
-            self.reminder = customtkinter.CTkLabel(self.checkFrame, text="These types of passwords are good but \nit's recommended to use passwords that contain all these 4 options",
-                                  font=self.reminderFont3,text_color='#F28705')
-            self.reminder.grid(row=8,column=0)
+            self.reminder = Label(self.frame5, text="These types of passwords are good but it's recommended to use passwords that contain all these 4 options",foreground='orange',
+                                  font=self.reminderFont3)
+            self.reminder.pack()
         
-    def errorMessages(self, title, message):
-        errorWindow = customtkinter.CTkToplevel(self.main_window)
-        errorWindow.title(title)
-        errorWindow.geometry("250x120")
-        
-        errorWindow.transient(self.main_window)
-        errorWindow.grab_set()
-        
-        errorLabel = customtkinter.CTkLabel(errorWindow,text=message,wraplength=250)
-        errorLabel.grid(row=0,column=0,padx=20,pady=20)
-        
-        okButton = customtkinter.CTkButton(errorWindow,text="OK",command=errorWindow.destroy)
-        okButton.grid(pady=5,row=1,column=0,sticky='ns')
-        
-    def historyAdder(self):
-        historyWindow = customtkinter.CTkToplevel(self.main_window)
-        historyWindow.title("Password History")
-        historyWindow.geometry("500x500")
-        
-        historyWindow.transient(self.main_window)
-        historyWindow.grab_set()
 
-        historyFrame = customtkinter.CTkScrollableFrame(historyWindow,width=450,height=450)
-        historyFrame.grid(row=0,column=0,padx=10,pady=10)
+            
         
-        for i, password in enumerate(self.passwordHistory):
-            tempStr = tk.StringVar(value=password)
-            temp = customtkinter.CTkEntry(historyFrame,textvariable=tempStr,state='readonly',width=300)
-            temp.grid(row=i,column=0,padx=5,pady=5)
+        
+        
+                
+                
+            
 
-       
 passGen()
