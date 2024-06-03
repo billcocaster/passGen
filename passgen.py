@@ -81,7 +81,6 @@ class passGen:
         
         self.reminder = None
         self.passwordHistory = []
-        self.main_window.iconbitmap('passgenicon.ico')
 
 
         self.main_window.mainloop()
