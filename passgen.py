@@ -73,7 +73,7 @@ class passGen:
         button.grid(row=6,column=0,pady=(20,0),sticky='w',padx=5)
         
         self.passGenWord= tk.StringVar()
-        entrypass = customtkinter.CTkEntry(self.checkFrame,textvariable=self.passGenWord,state='disabled',text_color='#F2F2F2',width=280)
+        entrypass = customtkinter.CTkEntry(self.checkFrame,textvariable=self.passGenWord,state='readonly',text_color='#F2F2F2',width=280)
         entrypass.grid(row=7,column=0,pady=50)
         
         historyButton = customtkinter.CTkButton(self.checkFrame,text='Password History',command=self.historyAdder,fg_color='#F20530',text_color='#F2F2F2')
@@ -81,6 +81,7 @@ class passGen:
         
         self.reminder = None
         self.passwordHistory = []
+
 
 
         self.main_window.mainloop()
