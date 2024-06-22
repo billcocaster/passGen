@@ -13,9 +13,11 @@ class passGen:
     def __init__(self):
         self.main_window = customtkinter.CTk()
         self.main_window.title("Welcome to password generator")
-        self.main_window.geometry('400x550')
+        self.main_window.geometry('385x550')
         self.main_window.grid_columnconfigure(0, weight=1)
         self.main_window.grid_rowconfigure((0, 1), weight=1)
+        self.main_window.resizable(width=False,height=False)
+        self.main_window.grab_set()
 
 
         brandFrame = customtkinter.CTkFrame(self.main_window,fg_color='#F28705',corner_radius=5)
